@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <unistd.h>
+  
+int main() {
+    // Array level kekeruhan air (NTU)
+    int kekeruhan[9] = {6, 8, 12, 18, 24, 30, 36, 42, 49};
+    int inputNTU;
+    int kecepatanMotor;
+    int waktuCuci;
+
+    printf("=== SIMULASI MESIN CUCI FUZZY ===\n");
+
+    // 1. Start ditekan
+    printf("\n1. Start ditekan\n");
+    printf("Motor pengisian air aktif...\n");
+    sleep(2);
+
+    // 2. Sensor turbidimeter aktif (1 kali)
+    printf("\n2. Masukkan level kekeruhan air (NTU): ");
+    scanf("%d", &inputNTU);
+
+    // Menentukan kecepatan motor & waktu mencuci
+    if (inputNTU <= 12) {
+        kecepatanMotor = 1000;
+        waktuCuci = 30;
+    } else if (inputNTU <= 24) {
+        kecepatanMotor = 1200;
+        waktuCuci = 40;
+    } else if (inputNTU <= 36) {
+        kecepatanMotor = 1500;
+        waktuCuci = 50;
+    } else {
+        kecepatanMotor = 1800;
+        waktuCuci = 60;
+    }
+
+    printf("\n3. Motor utama berputar\n");
+    printf("   Kecepatan motor : %d rpm\n", kecepatanMotor);
+    printf("   Total waktu cuci: %d detik\n", waktuCuci);
+
+    // 4. Berhenti di pertengahan waktu
+    printf("\n4. Motor berhenti di pertengahan waktu\n");
+    sleep(waktuCuci / 2);
+
+    // 5. Buang air kotor
+    printf("\n5. Buang air kotor\n");
+    printf("Motor pembuangan air aktif...\n");
+    sleep(2);
+
+    // 6. Pengeringan
+    printf("\n6. Pengeringan cucian\n");
+    printf("Motor utama 2000 rpm\n");
+    sleep(3);
+
+    // 7. Isi air kembali
+    printf("\n7. Pengisian air kembali\n");
+    sleep(2);
+
+    // 8. Sisa waktu mencuci
+    printf("\n8. Mencuci sisa waktu\n");
+    sleep(waktuCuci / 2);
+
+    // 9. Buang air kotor
+    printf("\n9. Buang air kotor akhir\n");
+    sleep(2);
+
+    // 10. Pengeringan akhir
+    printf("\n10. Pengeringan akhir\n");
+    printf("Motor utama 2000 rpm\n");
+    sleep(3);
+
+    printf("\n=== PROSES SELESAI ===\n");
+
+    return 0;
+}
